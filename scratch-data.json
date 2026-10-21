@@ -1,0 +1,122 @@
+[
+    {
+        "id": "TLC-NEW-1",
+        "name": "好運強強滾",
+        "price": 200,
+        "totalIssued": 5000000,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 2000000,
+                "totalCount": 5,
+                "claimedCount": 3,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 20000,
+                "totalCount": 200,
+                "claimedCount": 85,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 200,
+                "totalCount": 1500000,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "TLC-NEW-2",
+        "name": "金骰子",
+        "price": 100,
+        "totalIssued": 5000000,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 1000000,
+                "totalCount": 5,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 10000,
+                "totalCount": 200,
+                "claimedCount": 85,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 100,
+                "totalCount": 1500000,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "TLC-NEW-3",
+        "name": "喜從天降",
+        "price": 200,
+        "totalIssued": 5000000,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 2000000,
+                "totalCount": 5,
+                "claimedCount": 1,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 20000,
+                "totalCount": 200,
+                "claimedCount": 85,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 200,
+                "totalCount": 1500000,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "TLC-NEW-4",
+        "name": "10來添金",
+        "price": 500,
+        "totalIssued": 5000000,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 5000000,
+                "totalCount": 5,
+                "claimedCount": 2,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 50000,
+                "totalCount": 200,
+                "claimedCount": 85,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 500,
+                "totalCount": 1500000,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    }
+]
