@@ -1,0 +1,34 @@
+name: Daily Lottery Scraper & Deploy
+
+on:
+  schedule:
+    - cron: '0 18 * * *'
+  workflow_dispatch: 
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 直接在雲端安裝爬蟲需要的套件，免除本地端依賴
+      - name: Install Dependencies
+        run: npm install axios cheerio fs-extra
+
+      - name: Run Scraper
+        run: node scraper.js
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./                  
+          publish_branch: gh-pages         
+          commit_message: "🤖 自動更新台彩資料 [skip ci]"
