@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台彩刮刮樂即時殘值與期望值雷達</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 FontAwesome 圖示 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind 自訂設定 -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#151f32', 900: '#0f172a' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 隱藏捲軸但保留捲動功能 */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-200 font-sans min-h-screen">
+
+    <!-- 頂部導航與標題 -->
+    <header class="bg-slate-850 border-b border-slate-700 sticky top-0 z-40 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-radar text-amber-400 text-3xl"></i>
+                <h1 class="text-xl md:text-2xl font-bold text-white tracking-wide">台彩刮刮樂即時殘值雷達</h1>
+            </div>
+            <!-- 篩選與排序決策區 -->
+            <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                <select id="price-filter" class="bg-slate-800 border border-slate-600 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block p-2 text-white outline-none">
+                    <option value="all">💰 所有售價</option>
+                    <option value="100-200">$100 - $200</option>
+                    <option value="500">$500</option>
+                    <option value="1000-2000">$1000 - $2000</option>
+                </select>
+                <select id="sort-select" class="bg-slate-800 border border-slate-600 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block p-2 text-white outline-none">
+                    <option value="rtp">🔥 依 RTP% (資金回本率) 排序</option>
+                    <option value="winRate">🎯 依 真實賺錢率 排序</option>
+                    <option value="ev">💵 依 EV (期望值) 排序</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要內容區 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- 刮刮樂卡片 Grid 列表 -->
+        <div id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- 卡片由 JS 動態生成 -->
+        </div>
+    </main>
+
+    <!-- Sandbox Modal (彈出視窗) -->
+    <div id="sandbox-modal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity opacity-0">
+        <div class="bg-slate-800 border border-slate-700 rounded-2xl w-full max-w-md p-6 transform scale-95 transition-transform duration-300 shadow-2xl" id="sandbox-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-white"><i class="fas fa-bolt text-amber-400 mr-2"></i>現場微調試算</h3>
+                <button id="close-modal" class="text-slate-400 hover:text-white transition-colors"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            
+            <h4 id="modal-card-name" class="text-amber-400 font-bold mb-4 text-lg">刮刮樂名稱</h4>
+
+            <!-- 滑桿區塊 -->
+            <div class="mb-6 bg-slate-900 p-5 rounded-xl border border-slate-700 shadow-inner">
+                <div class="flex justify-between text-sm mb-3">
+                    <span class="text-slate-300 font-medium">假設目前銷售率</span>
+                    <span id="modal-rate-display" class="text-emerald-400 font-bold text-base">35%</span>
+                </div>
+                <!-- Range Slider -->
+                <input type="range" id="modal-slider" min="10" max="95" step="1" value="35" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-400">
+                <div class="flex justify-between text-xs text-slate-500 mt-2">
+                    <span>剛上市 (10%)</span>
+                    <span>快賣光 (95%)</span>
+                </div>
+            </div>
+
+            <!-- 動態跳動的結果區 -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-center shadow-inner flex flex-col justify-center">
+                    <p class="text-xs text-slate-400 mb-1 font-medium">即時期望值 (EV)</p>
+                    <p id="modal-ev" class="text-2xl font-bold transition-all duration-300">$0</p>
+                </div>
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-center shadow-inner flex flex-col justify-center">
+                    <p class="text-xs text-slate-400 mb-1 font-medium">資金回本率 (RTP)</p>
+                    <p id="modal-rtp" class="text-2xl font-bold transition-all duration-300">0%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 核心 JavaScript 邏輯 -->
+    <script>
+        let globalScratchData = [];
+        let currentSandboxCard = null;
+
+        // --- 核心精算邏輯 ---
+        function calculateMetrics(card, simulatedRate) {
+            // 1. 剩餘流通張數
+            const remainingTickets = card.totalIssued * (1 - simulatedRate);
+            if (remainingTickets <= 0) return { ev: 0, rtp: 0, winRate: 0, topPrizeStr: '已售完' };
+
+            let totalPostTaxValue = 0;
+            let winningTickets = 0; // 獎金 >= 售價的張數
+            let topPrizeStr = "";
+
+            // 2. 跑迴圈計算所有獎項
+            card.prizes.forEach((prize, index) => {
+                // 稅制邏輯：> 5000 扣 20.4%
+                const postTaxAmount = prize.amount > 5000 ? prize.amount * 0.796 : prize.amount;
+                
+                // 各獎項剩餘張數計算
+                let remainingPrizeCount = 0;
+                if (prize.isTracked) {
+                    remainingPrizeCount = Math.max(0, prize.totalCount - prize.claimedCount);
+                } else {
+                    remainingPrizeCount = prize.totalCount * (1 - simulatedRate);
+                }
+
+                // 累加稅後總價值
+                totalPostTaxValue += (postTaxAmount * remainingPrizeCount);
+
+                // 真實不賠錢張數
+                if (prize.amount >= card.price) {
+                    winningTickets += remainingPrizeCount;
+                }
+
+                // 紀錄頭獎資訊 (假設陣列第一項為頭獎)
+                if (index === 0) {
+                    topPrizeStr = `頭獎剩餘 ${Math.floor(remainingPrizeCount)} / 初始 ${prize.totalCount} 張`;
+                }
+            });
+
+            // 3. 四大指標計算
+            const ev = (totalPostTaxValue / remainingTickets) - card.price;
+            const rtp = (totalPostTaxValue / (remainingTickets * card.price)) * 100;
+            const winRate = (winningTickets / remainingTickets) * 100;
+
+            return {
+                ev: ev,
+                rtp: rtp,
+                winRate: winRate,
+                topPrizeStr: topPrizeStr,
+                remainingTickets: remainingTickets
+            };
+        }
+
+        // --- 畫面渲染邏輯 ---
+        function renderCards(dataToRender) {
+            const container = document.getElementById('card-container');
+            container.innerHTML = '';
+
+            if (dataToRender.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-10 text-slate-500">找不到符合條件的刮刮樂。</div>`;
+                return;
+            }
+
+            // 尋找最高 RTP 作為標示
+            const maxRtp = Math.max(...dataToRender.map(c => calculateMetrics(c, c.unsoldRate).rtp));
+
+            dataToRender.forEach(card => {
+                const metrics = calculateMetrics(card, card.unsoldRate);
+                const evColorClass = metrics.ev >= 0 ? 'text-emerald-400' : 'text-red-400';
+                const evSign = metrics.ev >= 0 ? '+' : '';
+                
+                // 頭獎是否被刮光
+                const topPrizeRemainingCount = card.prizes[0].totalCount - card.prizes[0].claimedCount;
+                const isTopPrizeEmpty = card.prizes[0].isTracked && topPrizeRemainingCount <= 0;
+
+                // 標籤邏輯
+                let badgeHtml = '';
+                if (isTopPrizeEmpty) {
+                    badgeHtml = `<span class="absolute -top-3 -right-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg border border-red-800 z-10">💀 頭獎已空</span>`;
+                } else if (metrics.rtp === maxRtp && metrics.rtp > 0) {
+                    badgeHtml = `<span class="absolute -top-3 -right-3 bg-amber-500 text-slate-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg border border-amber-300 z-10">🔥 最推薦</span>`;
+                }
+
+                const cardHtml = `
+                    <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 relative flex flex-col h-full shadow-lg hover:border-slate-500 transition-colors">
+                        ${badgeHtml}
+                        
+                        <!-- 標題與售價 -->
+                        <div class="flex justify-between items-start mb-4">
+                            <h2 class="text-xl font-bold text-white leading-tight pr-2">${card.name}</h2>
+                            <span class="bg-slate-700 text-amber-400 text-sm font-semibold px-2 py-1 rounded whitespace-nowrap">$${card.price}</span>
+                        </div>
+
+                        <!-- 進度條：銷售率 -->
+                        <div class="mb-4">
+                            <div class="flex justify-between text-xs text-slate-400 mb-1">
+                                <span>目前預估銷售</span>
+                                <span>${(card.unsoldRate * 100).toFixed(0)}%</span>
+                            </div>
+                            <div class="w-full bg-slate-700 rounded-full h-1.5">
+                                <div class="bg-blue-500 h-1.5 rounded-full" style="width: ${card.unsoldRate * 100}%"></div>
+                            </div>
+                        </div>
+
+                        <!-- 核心數據 -->
+                        <div class="grid grid-cols-2 gap-3 mb-4 flex-grow">
+                            <div class="bg-slate-900 rounded-lg p-3 border border-slate-750">
+                                <p class="text-xs text-slate-400 mb-1">真實期望值 (EV)</p>
+                                <p class="text-lg font-bold ${evColorClass}">${evSign}${metrics.ev.toFixed(1)}</p>
+                            </div>
+                            <div class="bg-slate-900 rounded-lg p-3 border border-slate-750">
+                                <p class="text-xs text-slate-400 mb-1">資金回本率 (RTP)</p>
+                                <p class="text-lg font-bold text-white">${metrics.rtp.toFixed(2)}%</p>
+                            </div>
+                            <div class="bg-slate-900 rounded-lg p-3 border border-slate-750 col-span-2 flex justify-between items-center">
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-1">真實不賠錢機率</p>
+                                    <p class="text-md font-bold text-emerald-300">${metrics.winRate.toFixed(2)}%</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xs text-slate-500 mb-1">官方中獎率</p>
+                                    <p class="text-sm font-medium text-slate-400">---</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 頭獎狀態 -->
+                        <div class="bg-slate-850 rounded-lg p-2 text-center text-sm border ${isTopPrizeEmpty ? 'border-red-500/50 text-red-400' : 'border-slate-700 text-amber-200'} mb-4">
+                            <i class="fas fa-crown mr-1"></i> ${metrics.topPrizeStr}
+                        </div>
+
+                        <!-- 沙盒按鈕 -->
+                        <button onclick="openSandbox('${card.id}')" class="w-full py-2.5 bg-slate-700 hover:bg-slate-600 text-white text-sm font-bold rounded-lg transition-colors border border-slate-600 hover:border-slate-400 mt-auto">
+                            <i class="fas fa-sliders-h mr-2"></i>現場微調試算
+                        </button>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        }
+
+        // --- 篩選與排序邏輯 ---
+        function applyFiltersAndSort() {
+            const priceFilter = document.getElementById('price-filter').value;
+            const sortVal = document.getElementById('sort-select').value;
+
+            // 1. 篩選
+            let filteredData = globalScratchData.filter(card => {
+                if (priceFilter === 'all') return true;
+                if (priceFilter === '100-200') return card.price >= 100 && card.price <= 200;
+                if (priceFilter === '500') return card.price === 500;
+                if (priceFilter === '1000-2000') return card.price >= 1000 && card.price <= 2000;
+                return true;
+            });
+
+            // 2. 排序
+            filteredData.sort((a, b) => {
+                const metricsA = calculateMetrics(a, a.unsoldRate);
+                const metricsB = calculateMetrics(b, b.unsoldRate);
+                return metricsB[sortVal] - metricsA[sortVal]; // 數值高到低
+            });
+
+            renderCards(filteredData);
+        }
+
+        function setupFiltersAndSort() {
+            document.getElementById('price-filter').addEventListener('change', applyFiltersAndSort);
+            document.getElementById('sort-select').addEventListener('change', applyFiltersAndSort);
+        }
+
+        // --- 沙盒 Modal 互動邏輯 ---
+        function openSandbox(cardId) {
+            currentSandboxCard = globalScratchData.find(c => c.id === cardId);
+            if (!currentSandboxCard) return;
+
+            document.getElementById('modal-card-name').textContent = currentSandboxCard.name;
+            const slider = document.getElementById('modal-slider');
+            slider.value = currentSandboxCard.unsoldRate * 100;
+            
+            updateSandboxMath(slider.value);
+            
+            const modal = document.getElementById('sandbox-modal');
+            const content = document.getElementById('sandbox-content');
+            modal.classList.remove('hidden');
+            
+            // Timeout 確保 display:block 生效後才觸發動畫
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+            }, 10);
+        }
+
+        document.getElementById('close-modal').addEventListener('click', () => {
+            const modal = document.getElementById('sandbox-modal');
+            const content = document.getElementById('sandbox-content');
+            modal.classList.add('opacity-0');
+            content.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        });
+
+        document.getElementById('modal-slider').addEventListener('input', (e) => {
+            updateSandboxMath(e.target.value);
+        });
+
+        function updateSandboxMath(sliderValue) {
+            if (!currentSandboxCard) return;
+            
+            const simulatedRate = parseFloat(sliderValue) / 100;
+            document.getElementById('modal-rate-display').textContent = `${sliderValue}%`;
+
+            const metrics = calculateMetrics(currentSandboxCard, simulatedRate);
+            
+            const evDisplay = document.getElementById('modal-ev');
+            const rtpDisplay = document.getElementById('modal-rtp');
+
+            // 數值更新
+            evDisplay.textContent = metrics.ev > 0 ? `+$${metrics.ev.toFixed(1)}` : `-$${Math.abs(metrics.ev).toFixed(1)}`;
+            rtpDisplay.textContent = `${metrics.rtp.toFixed(2)}%`;
+
+            // 正負值顏色動態切換
+            const greenClass = 'text-emerald-400';
+            const redClass = 'text-red-400';
+
+            evDisplay.classList.remove(greenClass, redClass);
+            rtpDisplay.classList.remove(greenClass, redClass);
+
+            if (metrics.ev >= 0) {
+                evDisplay.classList.add(greenClass);
+                rtpDisplay.classList.add(greenClass);
+            } else {
+                evDisplay.classList.add(redClass);
+                rtpDisplay.classList.add(redClass);
+            }
+
+            // 動畫 Pulse 特效
+            evDisplay.style.transform = 'scale(1.15)';
+            rtpDisplay.style.transform = 'scale(1.15)';
+            setTimeout(() => {
+                evDisplay.style.transform = 'scale(1)';
+                rtpDisplay.style.transform = 'scale(1)';
+            }, 150);
+        }
+
+        // --- 初始化與資料讀取 ---
+        async function initApp() {
+            const container = document.getElementById('card-container');
+            try {
+                container.innerHTML = '<div class="text-white col-span-full text-center py-10"><i class="fas fa-spinner fa-spin text-3xl mb-3 text-amber-400"></i><p>正在載入台彩最新連線資料...</p></div>';
+
+                // 嘗試讀取本地 JSON
+                const response = await fetch('./scratch-data.json');
+                if (!response.ok) throw new Error('無法讀取 scratch-data.json');
+                
+                globalScratchData = await response.json();
+                
+            } catch (error) {
+                console.warn('載入 JSON 失敗，自動切換至展示用假資料。原因:', error);
+                // 為了確保你即使沒有 JSON 檔也能看到畫面，加入防錯機制 (Fallback)
+                globalScratchData = [
+                    {
+                        id: 'MOCK-1', name: '好運強強滾 (展示)', price: 500, totalIssued: 5000000, unsoldRate: 0.35,
+                        prizes: [
+                            { name: "頭獎", amount: 5000000, totalCount: 3, claimedCount: 3, isTracked: true }, // 頭獎已空
+                            { name: "二獎", amount: 100000, totalCount: 50, claimedCount: 10, isTracked: true },
+                            { name: "普獎", amount: 500, totalCount: 1000000, claimedCount: 0, isTracked: false }
+                        ]
+                    },
+                    {
+                        id: 'MOCK-2', name: '金骰子 (展示)', price: 100, totalIssued: 3000000, unsoldRate: 0.8,
+                        prizes: [
+                            { name: "頭獎", amount: 500000, totalCount: 5, claimedCount: 1, isTracked: true },
+                            { name: "普獎", amount: 100, totalCount: 600000, claimedCount: 0, isTracked: false }
+                        ]
+                    }
+                ];
+            }
+
+            // 初始化渲染
+            applyFiltersAndSort();
+            setupFiltersAndSort();
+        }
+
+        // 啟動 App
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
