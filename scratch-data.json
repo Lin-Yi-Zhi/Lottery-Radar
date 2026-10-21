@@ -1,44 +1,14 @@
 [
     {
-        "id": "TLC-NEW-1",
-        "name": "好運強強滾",
-        "price": 200,
-        "totalIssued": 5000000,
-        "unsoldRate": 0.35,
-        "prizes": [
-            {
-                "name": "頭獎",
-                "amount": 2000000,
-                "totalCount": 5,
-                "claimedCount": 3,
-                "isTracked": true
-            },
-            {
-                "name": "二獎",
-                "amount": 20000,
-                "totalCount": 200,
-                "claimedCount": 85,
-                "isTracked": true
-            },
-            {
-                "name": "普獎",
-                "amount": 200,
-                "totalCount": 1500000,
-                "claimedCount": 0,
-                "isTracked": false
-            }
-        ]
-    },
-    {
-        "id": "TLC-NEW-2",
+        "id": "9eace25a8f3d40b082f87700be223722",
         "name": "金骰子",
         "price": 100,
-        "totalIssued": 5000000,
+        "totalIssued": 6120000,
         "unsoldRate": 0.35,
         "prizes": [
             {
                 "name": "頭獎",
-                "amount": 1000000,
+                "amount": 500000,
                 "totalCount": 5,
                 "claimedCount": 0,
                 "isTracked": true
@@ -46,74 +16,584 @@
             {
                 "name": "二獎",
                 "amount": 10000,
-                "totalCount": 200,
-                "claimedCount": 85,
+                "totalCount": 30600,
+                "claimedCount": 0,
                 "isTracked": true
             },
             {
                 "name": "普獎",
                 "amount": 100,
-                "totalCount": 1500000,
+                "totalCount": 1836000,
                 "claimedCount": 0,
                 "isTracked": false
             }
         ]
     },
     {
-        "id": "TLC-NEW-3",
-        "name": "喜從天降",
+        "id": "fbedb971c22e4383b547aba803d8e91b",
+        "name": "好運強強滾",
         "price": 200,
-        "totalIssued": 5000000,
+        "totalIssued": 6055100,
         "unsoldRate": 0.35,
         "prizes": [
             {
                 "name": "頭獎",
                 "amount": 2000000,
                 "totalCount": 5,
-                "claimedCount": 1,
+                "claimedCount": 0,
                 "isTracked": true
             },
             {
                 "name": "二獎",
                 "amount": 20000,
-                "totalCount": 200,
-                "claimedCount": 85,
+                "totalCount": 30275,
+                "claimedCount": 0,
                 "isTracked": true
             },
             {
                 "name": "普獎",
                 "amount": 200,
-                "totalCount": 1500000,
+                "totalCount": 1816530,
                 "claimedCount": 0,
                 "isTracked": false
             }
         ]
     },
     {
-        "id": "TLC-NEW-4",
+        "id": "e8b6f587406c4ed9a35bb90f70d8de8f",
+        "name": "喜從天降",
+        "price": 200,
+        "totalIssued": 6080000,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 2000000,
+                "totalCount": 6,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 20000,
+                "totalCount": 30400,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 200,
+                "totalCount": 1824000,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "9a804d7aaa4348db872aa84755487ff4",
         "name": "10來添金",
         "price": 500,
-        "totalIssued": 5000000,
+        "totalIssued": 4000000,
         "unsoldRate": 0.35,
         "prizes": [
             {
                 "name": "頭獎",
                 "amount": 5000000,
-                "totalCount": 5,
-                "claimedCount": 2,
+                "totalCount": 4,
+                "claimedCount": 0,
                 "isTracked": true
             },
             {
                 "name": "二獎",
                 "amount": 50000,
-                "totalCount": 200,
-                "claimedCount": 85,
+                "totalCount": 20000,
+                "claimedCount": 0,
                 "isTracked": true
             },
             {
                 "name": "普獎",
                 "amount": 500,
-                "totalCount": 1500000,
+                "totalCount": 1200000,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "8e3bcdc59b2b420db230b76890a81bfe",
+        "name": "金磚疊疊樂",
+        "price": 200,
+        "totalIssued": 6079300,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 2000000,
+                "totalCount": 5,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 20000,
+                "totalCount": 30396,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 200,
+                "totalCount": 1823790,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "a8bf234dd0654b8d8ddd69cd8fe18b71",
+        "name": "獎金大作戰",
+        "price": 200,
+        "totalIssued": 5914300,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 2000000,
+                "totalCount": 6,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 20000,
+                "totalCount": 29571,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 200,
+                "totalCount": 1774290,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "5551ee394c3342cba556f25a4577f13c",
+        "name": "好運樂加倍",
+        "price": 200,
+        "totalIssued": 6046600,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 2000000,
+                "totalCount": 5,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 20000,
+                "totalCount": 30233,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 200,
+                "totalCount": 1813980,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "bb758d63a2b94a058a8cd00c14b902b7",
+        "name": "無敵開獎機",
+        "price": 300,
+        "totalIssued": 6603400,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 3000000,
+                "totalCount": 4,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 30000,
+                "totalCount": 33017,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 300,
+                "totalCount": 1981020,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "1989222938f341cab758dcaed23f5bf6",
+        "name": "錢進888",
+        "price": 100,
+        "totalIssued": 6063200,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 800000,
+                "totalCount": 4,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 10000,
+                "totalCount": 30316,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 100,
+                "totalCount": 1818960,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "97c26524bef240648609986bb01fcda3",
+        "name": "金五吉",
+        "price": 200,
+        "totalIssued": 6081400,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 2000000,
+                "totalCount": 5,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 20000,
+                "totalCount": 30407,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 200,
+                "totalCount": 1824420,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "ca2e7365336d4fb09357bf15941bb97b",
+        "name": "獎金對決",
+        "price": 200,
+        "totalIssued": 5892100,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 2000000,
+                "totalCount": 5,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 20000,
+                "totalCount": 29460,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 200,
+                "totalCount": 1767630,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "6b54b955ab5e4b8486fc4b5576466f38",
+        "name": "大麻將",
+        "price": 1000,
+        "totalIssued": 3500000,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 10000000,
+                "totalCount": 3,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 100000,
+                "totalCount": 17500,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 1000,
+                "totalCount": 1050000,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "8cc5f57a85544d2cbfd4fe53d8a0fa87",
+        "name": "財富密碼",
+        "price": 200,
+        "totalIssued": 3567300,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 2000000,
+                "totalCount": 3,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 20000,
+                "totalCount": 17836,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 200,
+                "totalCount": 1070190,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "42ad7c32f9024f31b36512c747b6c13c",
+        "name": "刮刮金樂透",
+        "price": 200,
+        "totalIssued": 7140000,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 2000000,
+                "totalCount": 8,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 20000,
+                "totalCount": 35700,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 200,
+                "totalCount": 2142000,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "f7eafdff45544312b58df5d273e46294",
+        "name": "狂刮10萬",
+        "price": 200,
+        "totalIssued": 4590000,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 100000,
+                "totalCount": 800,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 20000,
+                "totalCount": 22950,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 200,
+                "totalCount": 1377000,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "6a26038fbdd3449f93d6cef10f2eb83a",
+        "name": "無敵777",
+        "price": 300,
+        "totalIssued": 6616400,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 3000000,
+                "totalCount": 5,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 30000,
+                "totalCount": 33082,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 300,
+                "totalCount": 1984920,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "aefd15760e4f4b67a3446f292b6b21e4",
+        "name": "嗨刮123",
+        "price": 100,
+        "totalIssued": 4080000,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 300000,
+                "totalCount": 4,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 10000,
+                "totalCount": 20400,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 100,
+                "totalCount": 1224000,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "18c1999a95ec452eb74466610202e5bb",
+        "name": "財運高升",
+        "price": 200,
+        "totalIssued": 6120000,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 2000000,
+                "totalCount": 4,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 20000,
+                "totalCount": 30600,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 200,
+                "totalCount": 1836000,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "dd7e1309f5434275a6ed9e0f6c4a3792",
+        "name": "好運發發",
+        "price": 200,
+        "totalIssued": 4080000,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 88000,
+                "totalCount": 88,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 20000,
+                "totalCount": 20400,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 200,
+                "totalCount": 1224000,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
+        "id": "a491e2d76a5c479ab2b0aa6661cb6b8c",
+        "name": "樂刮$5,000",
+        "price": 500,
+        "totalIssued": 4000000,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 3000000,
+                "totalCount": 2,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 50000,
+                "totalCount": 20000,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 500,
+                "totalCount": 1200000,
                 "claimedCount": 0,
                 "isTracked": false
             }
