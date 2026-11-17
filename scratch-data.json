@@ -1,5 +1,35 @@
 [
     {
+        "id": "04829469e2554e71b2f9e3951d221925",
+        "name": "金鑽派對",
+        "price": 200,
+        "totalIssued": 5952300,
+        "unsoldRate": 0.35,
+        "prizes": [
+            {
+                "name": "頭獎",
+                "amount": 2000000,
+                "totalCount": 6,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "二獎",
+                "amount": 20000,
+                "totalCount": 29761,
+                "claimedCount": 0,
+                "isTracked": true
+            },
+            {
+                "name": "普獎",
+                "amount": 200,
+                "totalCount": 1785690,
+                "claimedCount": 0,
+                "isTracked": false
+            }
+        ]
+    },
+    {
         "id": "26ffeb28fd73460d81b982642cf78672",
         "name": "猜拳高手",
         "price": 200,
@@ -564,36 +594,6 @@
                 "name": "普獎",
                 "amount": 100,
                 "totalCount": 1224000,
-                "claimedCount": 0,
-                "isTracked": false
-            }
-        ]
-    },
-    {
-        "id": "18c1999a95ec452eb74466610202e5bb",
-        "name": "財運高升",
-        "price": 200,
-        "totalIssued": 6120000,
-        "unsoldRate": 0.35,
-        "prizes": [
-            {
-                "name": "頭獎",
-                "amount": 2000000,
-                "totalCount": 4,
-                "claimedCount": 0,
-                "isTracked": true
-            },
-            {
-                "name": "二獎",
-                "amount": 20000,
-                "totalCount": 30600,
-                "claimedCount": 0,
-                "isTracked": true
-            },
-            {
-                "name": "普獎",
-                "amount": 200,
-                "totalCount": 1836000,
                 "claimedCount": 0,
                 "isTracked": false
             }
